@@ -1,0 +1,43 @@
+1) Antes de adicionar o template 22 - Template 4Linux DB PostgreSQL.xml, é necessário adicionar um "Value Mapping" no Zabbix.
+
+2) Como Administrador acesse a interface web e entre em Administration > General e Selecione Value Mapping no canto esquerdo superior.
+
+3) Adicione com os seguintes dados:
+
+	NOME: 4Linux Default MAP
+	VALUE		MAPPED TO
+	0		OK
+	1		Falha
+
+4) Edite o pg_hba.conf alterando as permissões de acesso ao banco e reinicie o serviço do Postgres.
+
+	# vim /etc/postgresql/9.3/main/pg_hba.conf
+	# Exemplo:
+	host	zabbixdb	zabbix	127.0.0.1/32	 md5
+
+	# service postgresql restart
+
+5) Crie o diretório scripts.
+
+	# mkdir /etc/zabbix/zabbix_agentd.d/scripts
+
+6) Crie o diretório /var/lib/zabbix (Caso o mesmo não exista).
+
+	# mkdir /var/lib/zabbix
+
+7) Informe as configurações necessárias de acesso ao seu banco, seguindo o exemplo a abaixo. E altere as permissões do arquivo .pgpass
+
+	"ENDEREÇO:PORTA:BASE:USUARIO:SENHA"
+
+	# echo "localhost:5432:zabbixdb:zabbix:4linux" > /var/lib/zabbix/.pgpass
+	# chmod 0600 /var/lib/zabbix/.pgpass
+	# chown zabbix. /var/lib/zabbix/
+
+8) altere o proprietário da pasta para o usuário Zabbix
+
+	# chown zabbix. /etc/zabbix/zabbix_agentd.d/scripts -R
+	# chmod 750 /etc/zabbix/zabbix_agentd.d/scripts/*
+
+9) Por último reinicie o serviço Agent do Zabbix.
+
+	# service zabbix-agent restart
