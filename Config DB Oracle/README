@@ -1,0 +1,24 @@
+1) Antes de adicionar o template 21 - Template 4Linux DB Oracle.xml, é necessário adicionar um "Value Mapping" no Zabbix.
+
+2) Como Administrador acesse a interface web e entre em Administration > General e Selecione Value Mapping no canto direito superior.
+
+3) Adicione com os seguintes dados:
+
+	NOME: 4Linux Default MAP
+	VALUE		MAPPED TO
+	0		OK
+	1		Falha
+
+4) Crie o diretório scripts.
+
+	# mkdir /etc/zabbix/zabbix_agentd.d/scripts
+
+5) Copie os scripts para dentro do diretório recem criado e altere o proprietário da pasta para o usuário Zabbix
+
+	# cp *.sh /etc/zabbix/zabbix_agentd.d/scripts
+	# chown zabbix. /etc/zabbix/zabbix_agentd.d/scripts -R
+	# chmod 750 /etc/zabbix/zabbix_agentd.d/scripts/*
+
+6) Por último reinicie o serviço Agent do Zabbix.
+
+	# service zabbix-agent restart

@@ -33,8 +33,9 @@
 	# chmod 0600 /var/lib/zabbix/.pgpass
 	# chown zabbix. /var/lib/zabbix/
 
-8) altere o proprietário da pasta para o usuário Zabbix
+8) Copie os scripts e altere o proprietário da pasta para o usuário Zabbix
 
+	# cp *.sh /etc/zabbix/zabbix_agentd.d/scripts
 	# chown zabbix. /etc/zabbix/zabbix_agentd.d/scripts -R
 	# chmod 750 /etc/zabbix/zabbix_agentd.d/scripts/*
 
