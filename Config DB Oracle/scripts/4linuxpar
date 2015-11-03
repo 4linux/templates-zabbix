@@ -1,0 +1,96 @@
+#!/bin/bash
+#================================================================================
+#
+#  Programa :  4linuxpar
+#
+#  Objetivo :  Obtém um parâmetro solicitado a partir do arquivo de parâmetros
+#              da 4Linux
+#
+#================================================================================
+
+PARAMETER_FILE=$HOME_4LINUX/etc/zabbix/zabbix_agentd.d/scripts/4linux_parameters.txt
+
+get_parameter() {
+
+  if ![ -f $PARAMETER_FILE ];
+    then
+      ERR_MSG="Arquivo de parametros não encontrado"
+      exit
+    fi
+
+  if [ "$2" != "-d" ];
+    then
+     ERR_MSG="Opção $2 desconhecida"
+     exit
+    fi
+
+  DB=$3
+
+  case $4 in
+    "-i")
+      F=2
+      ;;
+    "-al")
+      F=3
+      ;;
+    "-oh")
+      F=4
+      ;;
+    "-tnss")
+      F=5
+      ;;
+    "-syspwd")
+      F=6
+      ;;
+    "-physcr")
+      F=7
+      ;;
+    "-logscr")
+      F=8
+      ;;
+    "-phyend")
+      F=9
+      ;;
+    "-logend")
+      F=10
+      ;;
+    *)
+      ERR_MSG="Parametro solicitado não é conhecido. Utilize -i, -al, -oh, -tnss, -syspwd, -physcr, -logscr, -phyend, -logend"
+      exit
+  esac
+
+  ENTRY=$(cat $PARAMETER_FILE | grep $DB)
+  if [ "$ENTRY" = "" ];
+    then
+      ERR_MSG="Não foi encontrada uma entrada para o banco de dados solicitado."
+      exit
+    fi
+
+  RET=$(echo $ENTRY | cut -d; -F1)
+  if [ $RET != $DB ];
+    then
+      ERR_MSG="Não foi encontrada uma entrada para o banco de dados solicitado (2)."
+      exit
+    fi
+
+  RET=$(echo $ENTRY | cut -d; -F$F)
+}
+
+
+
+################################################################################
+# PONTO DE ENTRADA
+################################################################################
+
+case $1 in
+  "-g")
+    get_parameter
+    ;;
+
+  "-G")
+    get_parameter
+    ;;
+  *)
+   echo "Comando inválido"
+   ;;
+esac

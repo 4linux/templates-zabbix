@@ -1,0 +1,5 @@
+# 4LINUX
+#
+# Syntax 
+# <DATABASE>;<INSTANCE>;<ALERT_LOG>;<ORACLE_HOME>;<TNS_STDBY>;<SYS_SENHA>;
+BONITA;XE;/u01/app/oracle/diag/rdbms/xe/XE/trace;/u01/app/oracle/product/11.2.0/xe;sys;4linux
