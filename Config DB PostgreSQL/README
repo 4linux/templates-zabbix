@@ -1,6 +1,6 @@
 1) Antes de adicionar o template 22 - Template 4Linux DB PostgreSQL.xml, é necessário adicionar um "Value Mapping" no Zabbix.
 
-2) Como Administrador acesse a interface web e entre em Administration > General e Selecione Value Mapping no canto esquerdo superior.
+2) Como Administrador acesse a interface web e entre em Administration > General e Selecione Value Mapping no canto direito superior.
 
 3) Adicione com os seguintes dados:
 
