@@ -1,0 +1,2 @@
+# templates-zabbix
+A 4Linux possui grande experiência no Zabbix e criou templates customizados que monitoram itens além daquelas monitorados originalmente pelo zabbix com grande destaque para os templates de JBoss, PostgreSQL e OpenLDAP. Veja nos links abaixo os itens monitorados pelos templates customizados pela 4Linux e pelos templates originais do Zabbix. Além dos templates customizados, conheça os Serviços de Suporte e Consultoria Zabbix da 4Linux.
